@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # vim: set fileencoding=utf-8 :
 # Andre Anjos <andre.dos.anjos@gmail.com>
-# Sun 15 Apr 14:01:39 2012 
+# Sun 15 Apr 14:01:39 2012
 #
 # Copyright (C) 2011-2013 Idiap Research Institute, Martigny, Switzerland
 #
@@ -17,21 +17,25 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-"""Prints the version of bob and exits
+"""Prints the version of xbob.blitz and exits
 """
 
 def main():
   """Main routine, called by the script that gets the version of bob"""
 
   import pkg_resources
-  packages = pkg_resources.require('bob')
+  packages = pkg_resources.require('xbob.blitz')
   this = packages[0]
   deps = packages[1:]
 
-  print("The installed version of %s is %s" % (this.key, this.version))
-  print("%s is installed at: %s" % (this.key, this.location)
+  print("The installed version of %s is `%s'" % (this.key, this.version))
+  print("%s is installed at `%s'" % (this.key, this.location))
   print("%s depends on the following Python packages:" % (this.key,))
   for d in deps:
     print(" * %s: %s (%s)" % (d.key, d.version, d.location))
+  print("%s depends on the following C/C++ APIs:" % (this.key,))
+  import xbob.blitz
+  for key, value in xbob.blitz.version.externals.items():
+    print(" * %s: %s" % (key, value))
 
   return 0

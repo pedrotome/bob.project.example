@@ -66,10 +66,10 @@ setup(
     # privileges when using buildout.
     install_requires=[
       'setuptools',
-      'bob', # base signal proc./machine learning library
+      'xbob.blitz',
     ],
 
-    # Your project should be called something like 'xbob.<foo>' or 
+    # Your project should be called something like 'xbob.<foo>' or
     # 'xbob.<foo>.<bar>'. To implement this correctly and still get all your
     # packages to be imported w/o problems, you need to implement namespaces
     # on the various levels of the package and declare them here. See more
@@ -103,12 +103,6 @@ setup(
       'console_scripts': [
         'version.py = xbob.example.script.version:main',
         ],
-
-      # tests that are _exported_ (that can be executed by other packages) can
-      # be signalized like this:
-      'bob.test': [
-         'example = xbob.example.test:MyTests',
-         ],
 
       # finally, if you are writing a database package, you must declare the
       # relevant entries like this:
